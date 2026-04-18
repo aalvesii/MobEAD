@@ -26,7 +26,7 @@ pipeline {
             steps {
                 echo 'Rodando análise de qualidade com SonarQube...'
                 withSonarQubeEnv('Meu-SonarQube-Server') {
-                    sh "${SCANNER_HOME}/bin/sonar-scanner"
+                    sh "${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectKey=mobead -Dsonar.projectName=MobEAD"
                 }
             }
         }
