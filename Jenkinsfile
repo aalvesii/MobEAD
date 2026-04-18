@@ -35,7 +35,9 @@ pipeline {
             steps {
                 echo 'Iniciando container de Desenvolvimento...'
                 script {
-                    sh 'docker run -d -p 8080:80 --name mobead-dev mobead-app:${BUILD_ID}'
+                    sh 'docker rm -f mobead-dev || true'
+                    
+                    sh 'docker run -d -p 8081:80 --name mobead-dev mobead-app:${BUILD_ID}'
                 }
             }
         }
@@ -50,11 +52,12 @@ pipeline {
             steps {
                 echo 'Iniciando container de Produção...'
                 script {
-                    sh 'docker run -d -p 80:80 --name mobead-prod mobead-app:${BUILD_ID}'
+                    sh 'docker rm -f mobead-prod || true'
+                    
+                    sh 'docker run -d -p 8082:80 --name mobead-prod mobead-app:${BUILD_ID}'
                 }
             }
         }
-    }
 
     post {
         success {
