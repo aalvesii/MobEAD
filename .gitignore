@@ -338,3 +338,14 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+# Rerraform e ansible
+iac/.terraform/
+iac/.terraform.lock.hcl
+iac/terraform.tfstate
+iac/terraform.tfstate.backup
+*/.terraform/
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl

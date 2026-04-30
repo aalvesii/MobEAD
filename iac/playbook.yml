@@ -1,0 +1,21 @@
+---
+- name: Configurar Servidor Web Windows
+  hosts: windows
+  gather_facts: no
+  tasks:
+    - name: Instalar o IIS (Web-Server)
+      win_feature:
+        name: Web-Server
+        state: present
+        include_management_tools: yes
+      register: iis_install
+
+    - name: Iniciar o servico do IIS
+      win_service:
+        name: W3SVC
+        state: started
+        start_mode: auto
+
+    - name: Reiniciar o servidor se a instalacao exigir
+      win_reboot:
+      when: iis_install.reboot_required
